@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>gifmachine hall of fame</title>
+  <meta name="description" content="A Machine For Gifs">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="../style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<% if !query then %>
+    <h1>gifmachine history</h1>
+
+    <div class="history-wrapper"></div>
+<% else %>
+    <h1>gifmachine search</h1>
+
+    <div class="history-wrapper"></div>
+    <h2>Search query: "<%= Rack::Utils.escape_html(query) %>"</h2>
+<% end %>
+<ul class="gif-history">
+  <% gifs.each do |gif| %>
+      <li><a href="/view/<%= gif.id %>"><%= Rack::Utils.escape_html(gif.meme_top) %>
+        - <%= Rack::Utils.escape_html(gif.meme_bottom) %></a>&nbsp;by <%= Rack::Utils.escape_html(gif.who) %>
+        - <%= gif.when.strftime('%A %B %e %Y at %l:%M:%S%P') %></li>
+  <% end %>
+  <%= will_paginate gifs %>
+</ul>
+<form action="/search" method="get">
+  <label>Search: <input type="text" name="query"></label>
+  <input type="submit">
+</form>
+</body>
+</html>

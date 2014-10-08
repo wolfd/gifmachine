@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    background-color: #000;
+    font-family: sans-serif;
+    color: gray;
+}
+
+#gif {
+    display: block;
+    margin: 0 auto;
+}
+
+#gif-hidden {
+    display: none;
+}
+
+h1 {
+    position: absolute;
+    z-index: 100;
+    text-align: center;
+    margin: 0 auto;
+    /* Credit - http://css-tricks.com/adding-stroke-to-web-text/ */
+    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+    font-family: Impact,sans-serif;
+    font-size: 40px;
+    padding-top: 0px;
+    white-space: nowrap;
+}
+
+.history-wrapper {
+    padding-top: 60px;
+}
+
+ul.gif-history > li {
+    padding: 2px 0;
+    color: dimgray;
+    font-family: sans-serif;
+}
+
+a {
+    color: darkgray;
+    font-family: sans-serif;
+}
+
+a:visited {
+    color: gray;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.disabled {
+    color: #444;
+}
+
+.current {
+    color: #444;
+}
+
+label {
+    color: gray;
+}

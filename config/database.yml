@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  database: gifmachine
+  username: gifmachine
+  password: gifmachineiscool
+  host: localhost
+
+production:
+  adapter: postgresql
+  database: gifmachine
+  username: gifmachine
+  password: gifmachineiscool
+  host: localhost

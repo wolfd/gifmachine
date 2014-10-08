@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8">
+  <title>gifmachine time machine</title>
+  <meta name="description" content="A Machine For Gifs">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="../style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1 id="meme-top"></h1>
+<h1 id="meme-bottom"></h1>
+<img id="gif-hidden" src="">
+<img id="gif" src="">
+<script src="../gif.js"></script>
+<script>
+    set_image_and_text("<%= URI.escape(gif.url) %>", "<%= gif.meme_top.gsub('"','&quot;') %>", "<%= gif.meme_bottom.gsub('"','&quot;') %>");
+</script>
+</body>
+</html>
