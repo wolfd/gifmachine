@@ -32,14 +32,15 @@ Okay I want this, what do?
 1. Get [RVM](http://rvm.io/rvm/install)
 2. Using RVM, install Ruby 2.1.2 `rvm install 2.1.2`
 3. Run `bundle install`
-4. [If using Ubuntu Server 14.04 you might need to install `libpq-dev` for bundler to work](http://stackoverflow.com/a/6040822/831768)
-5. `sudo -u postgres createuser -D -A -P gifmachine` and enter in a good password
-6. `sudo -u postgres createdb -O gifmachine gifmachine` 
-7. Change `config/database.yml` to reflect the username and password of your gifmachine database
-8. `rake db:schema:load` to load the database schema into the database
-9. Change the API password (:gifmachine_password) in app.rb to something else
-10. `rackup`
-11. Enjoy.
+4. Get Postgres `sudo apt-get install postgresql postgresql-contrib`
+5. [If using Ubuntu Server 14.04 you might need to install `libpq-dev` for bundler to work](http://stackoverflow.com/a/6040822/831768)
+6. `sudo -u postgres createuser -D -A -P gifmachine` and enter in a good password
+7. `sudo -u postgres createdb -O gifmachine gifmachine` 
+8. Change `config/database.yml` to reflect the username and password of your gifmachine database
+9. `rake db:schema:load` to load the database schema into the database
+10. Change the API password (:gifmachine_password) in app.rb to something else
+11. `rackup`
+12. Enjoy.
 
 
 Uh, how do I post gifs?
