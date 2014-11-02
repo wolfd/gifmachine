@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="gifmachine : a better way to waste time with gifs (at work).">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>gifmachine</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/wolfd/gifmachine">View on GitHub</a>
+
+          <h1 id="project_title">gifmachine</h1>
+          <h2 id="project_tagline">a better way to waste time with gifs (at work).</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/wolfd/gifmachine/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/wolfd/gifmachine/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a name="the-story" class="anchor" href="#the-story"><span class="octicon octicon-link"></span></a>the story</h3>
+
+<p>gifmachine was born out of a computer at <a href="https://www.acquia.com/careers">Acquia</a> that, for a few days, just showed a gif of a helicopter spinning upside down. The gif resonated with the software engineers, evoking a sense of confusion and 'wtf' that unified us. When the computer went missing, pseudo-anger filled us all. We pledged to avenge our loss by creating a gifmachine greater than the one so wrongly taken from us.</p>
+
+<h3>
+<a name="the-real-story" class="anchor" href="#the-real-story"><span class="octicon octicon-link"></span></a>the real story</h3>
+
+<p>We stole a telepresence computer for a few days and played gifs on it. We liked it so much that when the rolling telepresence computer went back to its intended use, I wasted a bunch of time making a replacement so that as a team we could all continue wasting time wasting other people's time. Then we open-sourced it so you can waste time too!</p>
+
+<hr>
+
+<p><em>A Machine for Gifs</em></p>
+
+<ul>
+<li>Need an excuse to show a gif to your coworkers? </li>
+<li>Need a use for that Raspberry Pi that isn't doing anything useful?</li>
+<li>Need a web-scale solution to your animated gif needs?</li>
+</ul>
+
+<p>Presenting the newest GMaaS (Gif Machine as a Service) solution for your tech company with a startup culture: <strong>gifmachine</strong></p>
+
+<p><img src="https://raw.githubusercontent.com/wolfd/gifmachine/master/info/gifmachine-1.gif" alt="billion dollar startup idea"></p>
+
+<h2>
+<a name="what-actually-is-it" class="anchor" href="#what-actually-is-it"><span class="octicon octicon-link"></span></a>What actually is it?</h2>
+
+<ul>
+<li>gifmachine is a Ruby Sinatra app that provides a dirty interface for enjoying gifs with your coworkers. gifmachine provides a HTTP API for posting gifs and meme text to overlay.</li>
+<li>gifmachine allows your coworkers to complain about <code>company_x</code>'s broken API when it goes down and laugh as <a href="http://istheinternetonfire.com/">the internet catches fire</a>.</li>
+<li>gifmachine is designed to be run in kiosk mode on an unused computer and monitor, it's just a webpage that puts the gif meme in fullscreen.</li>
+</ul>
+
+<h2>
+<a name="how-does-it-work" class="anchor" href="#how-does-it-work"><span class="octicon octicon-link"></span></a>How does it work?</h2>
+
+<p>It mostly does! When it is working well...</p>
+
+<ul>
+<li>gifmachine uses WebSockets to send out updates to connected clients.</li>
+<li>gifmachine stores everything in a database (developed with Postgres, but it shouldn't be too hard to change that).</li>
+<li>gifmachine uses ActiveRecord to save the developer time and calories.</li>
+</ul>
+
+<h2>
+<a name="websockets" class="anchor" href="#websockets"><span class="octicon octicon-link"></span></a>WebSockets?</h2>
+
+<p><img src="https://raw.githubusercontent.com/wolfd/gifmachine/master/info/gifmachine-2.gif" alt="websockets are magic"></p>
+
+<h2>
+<a name="okay-i-want-this-what-do" class="anchor" href="#okay-i-want-this-what-do"><span class="octicon octicon-link"></span></a>Okay I want this, what do?</h2>
+
+<ol>
+<li>Get <a href="http://rvm.io/rvm/install">RVM</a>
+</li>
+<li>Using RVM, install Ruby 2.1.2 <code>rvm install 2.1.2</code>
+</li>
+<li>Run <code>bundle install</code>
+</li>
+<li>Get Postgres <code>sudo apt-get install postgresql postgresql-contrib</code>
+</li>
+<li><a href="http://stackoverflow.com/a/6040822/831768">If using Ubuntu Server 14.04 you might need to install <code>libpq-dev</code> for bundler to work</a></li>
+<li>
+<code>sudo -u postgres createuser -D -A -P gifmachine</code> and enter in a good password</li>
+<li>
+<code>sudo -u postgres createdb -O gifmachine gifmachine</code> </li>
+<li>Change <code>config/database.yml</code> to reflect the username and password of your gifmachine database</li>
+<li>
+<code>rake db:schema:load</code> to load the database schema into the database</li>
+<li>Change the API password (:gifmachine_password) in app.rb to something else</li>
+<li><code>rackup</code></li>
+<li>Enjoy.</li>
+</ol>
+
+<h2>
+<a name="uh-how-do-i-post-gifs" class="anchor" href="#uh-how-do-i-post-gifs"><span class="octicon octicon-link"></span></a>Uh, how do I post gifs?</h2>
+
+<p>Here's a relevant snippet of Ruby code that might help you interface with gifmachine's API:</p>
+
+<div class="highlight highlight-ruby"><pre><span class="no">EventMachine</span><span class="o">::</span><span class="no">HttpRequest</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="vi">@config</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/gif"</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span><span class="o">.</span><span class="n">post</span> <span class="ss">:body</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="ss">:url</span> <span class="o">=&gt;</span> <span class="n">gif_url</span><span class="p">,</span>
+  <span class="ss">:who</span> <span class="o">=&gt;</span> <span class="n">username</span><span class="p">,</span>
+  <span class="ss">:meme_top</span> <span class="o">=&gt;</span> <span class="n">meme_top</span><span class="p">,</span>
+  <span class="ss">:meme_bottom</span> <span class="o">=&gt;</span> <span class="n">meme_bottom</span><span class="p">,</span>
+  <span class="ss">:seekrit</span> <span class="o">=&gt;</span> <span class="vi">@config</span><span class="o">.</span><span class="n">password</span> <span class="c1"># Minimal security lololol</span>
+<span class="p">}</span>
+</pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">gifmachine maintained by <a href="https://github.com/wolfd">wolfd</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-56317076-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
