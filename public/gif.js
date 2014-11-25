@@ -109,8 +109,8 @@ var fix_image_size = function () {
 
 // Reposition meme text
 var meme_text_position = function () {
-    meme_top.innerText = next_meme_top;
-    meme_bottom.innerText = next_meme_bottom;
+    meme_top.textContent = next_meme_top;
+    meme_bottom.textContent = next_meme_bottom;
 
     meme_text_element(meme_top);
     meme_text_element(meme_bottom);
