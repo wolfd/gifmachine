@@ -14,7 +14,7 @@
 <img id="gif" src="">
 <script src="../gif.js"></script>
 <script>
-    set_image_and_text("<%= URI.escape(gif.url) %>", "<%= gif.meme_top.gsub('"','&quot;') %>", "<%= gif.meme_bottom.gsub('"','&quot;') %>");
+    set_image_and_text("<%= URI.escape(gif.url) %>", "<%= gif.meme_top.to_s.gsub('"','&quot;') %>", "<%= gif.meme_bottom.to_s.gsub('"','&quot;') %>");
 </script>
 </body>
 </html>
